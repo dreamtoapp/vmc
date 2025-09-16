@@ -54,7 +54,7 @@ type MotionButtonProps = Omit<MotionProps, 'children'> & {
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean
   loading?: boolean
   loadingText?: string
@@ -65,7 +65,6 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, loading, loadingText, leftIcon, rightIcon, children, motionProps, disabled, ...props }, ref) => {
-    const Comp = asChild ? Slot : motion.button
     const isDisabled = disabled || loading
 
     const buttonContent = (
@@ -139,15 +138,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <Comp
+      <motion.button
         className={cn(buttonVariants({ variant, size, loading, className }))}
         ref={ref}
         disabled={isDisabled}
         {...defaultMotionProps}
-        {...props}
+        {...(props as any)}
       >
         {buttonContent}
-      </Comp>
+      </motion.button>
     )
   }
 )

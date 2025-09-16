@@ -66,10 +66,10 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 
     return (
       <motion.div
-        ref={ref}
+        ref={ref as any}
         className={cn(cardVariants({ variant, size }), className)}
-        {...defaultMotionProps}
-        {...props}
+        {...(defaultMotionProps as any)}
+        {...(props as any)}
       >
         {children}
       </motion.div>
@@ -97,9 +97,9 @@ const CardHeader = React.forwardRef<
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, duration: 0.3 }}
-      ref={ref}
+      ref={ref as any}
       className={cn("flex flex-col space-y-2", className)}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.div>
@@ -130,7 +130,7 @@ const CardTitle = React.forwardRef<
 
   return (
     <motion.h3
-      ref={ref}
+      ref={ref as any}
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.2, duration: 0.3 }}
@@ -138,7 +138,7 @@ const CardTitle = React.forwardRef<
         "text-xl font-semibold leading-tight tracking-tight text-card-foreground",
         className
       )}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.h3>
@@ -166,12 +166,12 @@ const CardDescription = React.forwardRef<
 
   return (
     <motion.p
-      ref={ref}
+      ref={ref as any}
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.3, duration: 0.3 }}
       className={cn("text-sm text-muted-foreground leading-relaxed", className)}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.p>
@@ -195,12 +195,12 @@ const CardContent = React.forwardRef<
 
   return (
     <motion.div
-      ref={ref}
+      ref={ref as any}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4, duration: 0.3 }}
       className={cn("pt-0", className)}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.div>
@@ -224,12 +224,12 @@ const CardFooter = React.forwardRef<
 
   return (
     <motion.div
-      ref={ref}
+      ref={ref as any}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5, duration: 0.3 }}
       className={cn("flex items-center pt-4", className)}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.div>

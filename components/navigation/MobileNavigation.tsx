@@ -233,7 +233,7 @@ export default function MobileNavigation() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <LanguageToggle variant="outline" size="sm" />
+                      <LanguageToggle />
                     </motion.div>
                     <motion.button
                       onClick={() => setIsOpen(false)}

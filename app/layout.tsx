@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Tajawal } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/contexts/LanguageContext'
@@ -27,11 +27,12 @@ export const metadata: Metadata = {
   creator: 'DreamToApp',
   publisher: 'DreamToApp',
   robots: 'index, follow',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#2E86AB' },
     { media: '(prefers-color-scheme: dark)', color: '#2E86AB' },

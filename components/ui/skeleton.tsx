@@ -28,8 +28,11 @@ const skeletonVariants = cva(
 )
 
 export interface SkeletonProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof skeletonVariants> {
+  extends Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  >,
+  VariantProps<typeof skeletonVariants> {
   animated?: boolean
 }
 
@@ -47,12 +50,12 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
 
     return (
       <motion.div
-        ref={ref}
+        ref={ref as any}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
         className={cn(skeletonVariants({ variant, size }), className)}
-        {...props}
+        {...(props as any)}
       />
     )
   }
@@ -62,7 +65,10 @@ Skeleton.displayName = "Skeleton"
 // Specialized skeleton components
 const SkeletonCard = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { animated?: boolean }
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  > & { animated?: boolean }
 >(({ className, animated = true, ...props }, ref) => (
   <motion.div
     ref={ref}
@@ -88,7 +94,10 @@ SkeletonCard.displayName = "SkeletonCard"
 
 const SkeletonText = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  > & {
     lines?: number
     animated?: boolean
   }
@@ -116,7 +125,10 @@ SkeletonText.displayName = "SkeletonText"
 
 const SkeletonButton = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  > & {
     size?: "sm" | "default" | "lg" | "xl"
     animated?: boolean
   }
@@ -148,7 +160,10 @@ SkeletonButton.displayName = "SkeletonButton"
 
 const SkeletonAvatar = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  > & {
     size?: "sm" | "default" | "lg" | "xl"
     animated?: boolean
   }
@@ -176,7 +191,10 @@ SkeletonAvatar.displayName = "SkeletonAvatar"
 
 const SkeletonTable = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  > & {
     rows?: number
     columns?: number
     animated?: boolean
@@ -220,7 +238,10 @@ SkeletonTable.displayName = "SkeletonTable"
 
 const SkeletonForm = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  > & {
     fields?: number
     animated?: boolean
   }
@@ -257,7 +278,10 @@ SkeletonForm.displayName = "SkeletonForm"
 
 const SkeletonChart = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  > & {
     type?: "bar" | "line" | "pie" | "area"
     animated?: boolean
   }
@@ -337,7 +361,10 @@ SkeletonChart.displayName = "SkeletonChart"
 // Loading spinner component
 const LoadingSpinner = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'
+  > & {
     size?: "sm" | "default" | "lg" | "xl"
     variant?: "default" | "dots" | "bars" | "pulse"
   }
