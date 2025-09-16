@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import ForceDirLTR from './ForceDir'
 
+
 // (removed duplicate type and helper declarations after revert)
 
 type CostItem = { title: string; price: string }
@@ -339,6 +340,8 @@ export default async function QuotePage() {
           </section>
         </div>
       </div>
+
+
     </main>
   )
 }

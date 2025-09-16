@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import DesktopNavigation from './DesktopNavigation'
 import CenterNavigation from './CenterNavigation'
-import MobileNavigation from './MobileNavigation'
 import Logo from '@/components/ui/Logo'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -72,15 +71,12 @@ export default function Navigation() {
                 <ThemeToggle className="hidden sm:flex" />
               </motion.div>
 
-              {/* Mobile Navigation Trigger */}
-              <div className="lg:hidden ml-3">
-                <MobileNavigation />
-              </div>
+              {/* Mobile menu removed per request */}
             </div>
 
             {/* Center Column - Navigation Links */}
             <div className="flex items-center justify-center">
-              <div className="hidden lg:flex">
+              <div className="flex">
                 <CenterNavigation />
               </div>
             </div>
@@ -122,6 +118,8 @@ export default function Navigation() {
           className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-primary/50 via-primary to-primary/50 origin-left"
         />
       </motion.header>
+
+
 
       {/* Progress indicator */}
       <motion.div

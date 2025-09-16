@@ -7,13 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import {
   Mail,
   Phone,
-  MapPin,
-  Clock,
-  Globe,
-  MessageCircle,
-  Building2,
-  User
+  Globe
 } from 'lucide-react'
+import Image from 'next/image'
 
 export default function ContactPage() {
   const [mounted, setMounted] = useState(false)
@@ -32,43 +28,25 @@ export default function ContactPage() {
       title: "Email",
       details: ["dreamtoapp@gmail.com"],
       description: "Send us an email anytime",
-      color: "text-blue-500"
+      color: "text-blue-500",
+      link: "mailto:dreamtoapp@gmail.com"
     },
     {
       icon: Phone,
       title: "Phone",
-      details: ["+966 50 269 9023"],
+      details: ["0502699023"],
       description: "Call us during business hours",
-      color: "text-green-500"
+      color: "text-green-500",
+      link: "tel:0502699023"
     },
     {
       icon: Globe,
       title: "Website",
       details: ["dreamto.app"],
       description: "Visit our main website",
-      color: "text-purple-500"
+      color: "text-purple-500",
+      link: "https://dreamto.app"
     },
-    {
-      icon: MapPin,
-      title: "Location",
-      details: ["Saudi Arabia"],
-      description: "Serving clients nationwide",
-      color: "text-red-500"
-    },
-    {
-      icon: Clock,
-      title: "Business Hours",
-      details: ["Sunday - Thursday", "9:00 AM - 6:00 PM"],
-      description: "Saudi Arabia timezone",
-      color: "text-orange-500"
-    },
-    {
-      icon: Building2,
-      title: "Company",
-      details: ["DreamToApp"],
-      description: "Healthcare Technology Solutions",
-      color: "text-indigo-500"
-    }
   ]
 
 
@@ -143,8 +121,14 @@ export default function ContactPage() {
                       </CardHeader>
                       <CardContent className="text-center">
                         {item.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-900 font-medium mb-1">
-                            {detail}
+                          <p key={detailIndex} className="text-foreground font-medium mb-1">
+                            {item.link ? (
+                              <a href={item.link} target={item.title === 'Website' ? '_blank' : undefined} rel={item.title === 'Website' ? 'noopener noreferrer' : undefined} className="underline decoration-primary-500/40 underline-offset-4 hover:decoration-primary-500">
+                                {detail}
+                              </a>
+                            ) : (
+                              detail
+                            )}
                           </p>
                         ))}
                       </CardContent>
@@ -158,63 +142,17 @@ export default function ContactPage() {
       </section>
 
 
-      {/* Call to Action */}
-      <section className="px-4 py-16 bg-primary-500">
-        <div className="container mx-auto text-center">
-          <div className="max-w-4xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold text-white mb-6"
-            >
-              Ready to Start Your Project?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-xl text-primary-100 mb-8"
-            >
-              Contact us today to discuss your healthcare technology needs
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <a
-                href="mailto:dreamtoapp@gmail.com"
-                className="bg-white text-primary-500 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
-              >
-                <Mail className="w-5 h-5 mr-2" />
-                Send Email
-              </a>
-              <a
-                href="tel:+966502699023"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 transition-colors inline-flex items-center justify-center"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Call Now
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white px-4 py-12">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">DA</span>
-              </div>
-              <span className="font-semibold">DreamToApp</span>
+            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+              <Image src="/dreamToApp-dark.svg" alt="DreamToApp" width={36} height={36} className="w-9 h-9" />
+              <span className="font-bold text-lg bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 bg-clip-text text-transparent">
+                DreamToApp
+              </span>
             </div>
             <div className="text-gray-400">
               © 2024 DreamToApp. Healthcare Innovation Delivered for Al-Elm Medical Company.

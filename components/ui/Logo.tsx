@@ -76,7 +76,7 @@ export default function Logo({
 
       {showText && (
         <motion.span
-          className={`font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 bg-clip-text text-transparent ${textSizeClasses[size]} tracking-tight group-hover:scale-105 transition-transform duration-300`}
+          className={`hidden sm:inline font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 bg-clip-text text-transparent ${textSizeClasses[size]} tracking-tight group-hover:scale-105 transition-transform duration-300`}
           whileHover={{ scale: 1.05 }}
         >
           DreamToApp

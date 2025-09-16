@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import Navigation from '@/components/navigation/Navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useLanguage } from '@/contexts/LanguageContext'
 import {
@@ -20,9 +19,18 @@ import {
   SiJest,
   SiOpenai,
   SiPrisma,
-  SiSocketdotio
+  SiSocketdotio,
+  SiFramer,
+  SiRadixui,
+  SiReacthookform,
+  SiVercel,
+  SiPnpm,
+  SiAndroid,
+  SiIos
 } from 'react-icons/si'
 import { MdSecurity } from 'react-icons/md'
+import { FaReact, FaNodeJs, FaAws, FaDocker } from 'react-icons/fa'
+import { Layers, ShieldCheck } from 'lucide-react'
 
 export default function ProposalPage() {
   const [mounted, setMounted] = useState(false)
@@ -38,8 +46,7 @@ export default function ProposalPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
-      {/* Navigation */}
-      <Navigation />
+
 
       {/* Hero Section */}
       <section className="px-4 py-16 md:py-24">
@@ -63,6 +70,9 @@ export default function ProposalPage() {
               <br />
               <span className={`text-lg text-gray-500 mt-2 block ${isRTL ? 'text-right' : 'text-left'}`}>
                 <strong>{t.proposal.hero.submittedTo}</strong> {t.common.client} | <strong>{t.proposal.hero.submittedBy}</strong> {t.common.company}
+              </span>
+              <span className={`text-base text-gray-700 mt-2 block ${isRTL ? 'text-right' : 'text-left'}`}>
+                Prepared by <strong>Eng. Khalid Ali</strong> — DreamToApp
               </span>
             </p>
           </div>
@@ -116,31 +126,29 @@ export default function ProposalPage() {
                   {t.proposal.executiveSummary.keyValueProps}
                 </h4>
                 <ul className="space-y-3">
-                  <li className={`flex items-start space-x-3 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className="w-2 h-2 bg-primary-500 rounded-full mt-2"></div>
-                    <span className={`text-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}>
-                      {t.proposal.executiveSummary.streamlinedManagement}
-                    </span>
-                  </li>
-                  <li className={`flex items-start space-x-3 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className="w-2 h-2 bg-primary-500 rounded-full mt-2"></div>
-                    <span className={`text-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}>
-                      {t.proposal.executiveSummary.realTimeAnalytics}
-                    </span>
-                  </li>
-                  <li className={`flex items-start space-x-3 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className="w-2 h-2 bg-primary-500 rounded-full mt-2"></div>
-                    <span className={`text-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}>
-                      {t.proposal.executiveSummary.mobileFirst}
-                    </span>
-                  </li>
-                  <li className={`flex items-start space-x-3 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className="w-2 h-2 bg-primary-500 rounded-full mt-2"></div>
-                    <span className={`text-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}>
-                      {t.proposal.executiveSummary.hipaaCompliant}
-                    </span>
-                  </li>
+                  {[
+                    'Streamlined management: Unified platform for patients, providers, and operations',
+                    'Real-time analytics: Live KPIs for utilization, outcomes, and costs',
+                    'Mobile-first care: React Native apps for patients and providers (online/offline)',
+                    'HIPAA/PDPL ready: End-to-end encryption, audit logs, least-privilege access',
+                    'Fast integrations: EMR/LIS/PACS and e-claims with API-first design',
+                    'Local readiness: Arabic/RTL, KSA payments, in-region hosting'
+                  ].map((text, index) => (
+                    <li key={index} className={`flex items-start space-x-3 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                      <div className="w-2 h-2 bg-primary-500 rounded-full mt-2"></div>
+                      <span className={`text-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}>{text}</span>
+                    </li>
+                  ))}
                 </ul>
+                <p className={`mt-3 text-xs text-gray-500 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  HIPAA: Health Insurance Portability and Accountability Act (U.S.). PDPL: Personal Data Protection Law (Saudi Arabia).
+                </p>
+                <p className={`mt-1 text-xs text-gray-500 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  EMR: Electronic Medical Record. LIS: Laboratory Information System. PACS: Picture Archiving and Communication System.
+                </p>
+                <p className={`mt-1 text-xs text-gray-500 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  FHIR: Fast Healthcare Interoperability Resources. HL7: Health Level Seven interoperability standards.
+                </p>
               </div>
             </div>
           </div>
@@ -181,7 +189,9 @@ export default function ProposalPage() {
                       t.proposal.problemStatement.fragmentedData,
                       t.proposal.problemStatement.manualProcesses,
                       t.proposal.problemStatement.limitedIntegration,
-                      t.proposal.problemStatement.highMaintenance
+                      t.proposal.problemStatement.highMaintenance,
+                      'Security gaps from outdated servers and unpatched software',
+                      'Vendor lock-in raises costs and slows change'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
@@ -223,7 +233,9 @@ export default function ProposalPage() {
                       t.proposal.problemStatement.isolatedInfo,
                       t.proposal.problemStatement.poorInteroperability,
                       t.proposal.problemStatement.duplicateData,
-                      t.proposal.problemStatement.inefficientWorkflows
+                      t.proposal.problemStatement.inefficientWorkflows,
+                      'No single longitudinal patient view across departments',
+                      'Manual CSV/email data transfers cause errors and delays'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></div>
@@ -265,7 +277,12 @@ export default function ProposalPage() {
                       t.proposal.problemStatement.complexNavigation,
                       t.proposal.problemStatement.poorAccessibility,
                       t.proposal.problemStatement.outdatedInterfaces,
-                      t.proposal.problemStatement.limitedMobile
+                      t.proposal.problemStatement.limitedMobile,
+                      'Slow page loads on low-end devices and poor networks',
+                      'Inconsistent Arabic/RTL experience across screens',
+                      'Low contrast and small touch targets reduce usability',
+                      'No offline fallback for critical patient workflows',
+                      'Confusing forms with unclear validation messages'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
@@ -315,7 +332,12 @@ export default function ProposalPage() {
                       t.proposal.solution.completeProfiles,
                       t.proposal.solution.medicalHistory,
                       t.proposal.solution.appointmentScheduling,
-                      t.proposal.solution.realTimeUpdates
+                      t.proposal.solution.realTimeUpdates,
+                      'Self-service onboarding and digital consent',
+                      'Automated reminders to reduce no-shows',
+                      'Smart triage and prioritization for urgent cases',
+                      'Personalized care plans with task reminders',
+                      'Family/caregiver access with granular permissions'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -350,7 +372,12 @@ export default function ProposalPage() {
                       t.proposal.solution.performanceMetrics,
                       t.proposal.solution.predictiveAnalytics,
                       t.proposal.solution.customReports,
-                      t.proposal.solution.trendAnalysis
+                      t.proposal.solution.trendAnalysis,
+                      'Executive snapshots tailored for MOH reporting',
+                      'Cost-to-care and ROI tracking',
+                      'Cohort and funnel analysis for patient journeys',
+                      'Anomaly detection with proactive alerting',
+                      'Operational SLA dashboards for clinics and teams'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -385,7 +412,12 @@ export default function ProposalPage() {
                       t.proposal.solution.touchOptimized,
                       t.proposal.solution.offlineCapabilities,
                       t.proposal.solution.pushNotifications,
-                      t.proposal.solution.secureMessaging
+                      t.proposal.solution.secureMessaging,
+                      'One-tap rebook and secure in-app payments',
+                      'Biometric login and device-level encryption',
+                      'Telemedicine: HD video consultations and e-prescriptions',
+                      'QR check-in at clinics and digital queue tickets',
+                      'Multilingual UI with automatic RTL support'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -420,7 +452,12 @@ export default function ProposalPage() {
                       t.proposal.solution.apiFirst,
                       t.proposal.solution.thirdPartyIntegrations,
                       t.proposal.solution.dataSynchronization,
-                      t.proposal.solution.legacySupport
+                      t.proposal.solution.legacySupport,
+                      'E-claims and insurance clearinghouse ready',
+                      'FHIR/HL7 adapters with validation',
+                      'Event-driven webhooks for real-time partner updates',
+                      'Partner sandbox with API keys and rate limiting',
+                      'Observability: retries, DLQs, and integration monitoring'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -455,7 +492,9 @@ export default function ProposalPage() {
                       t.proposal.solution.endToEndEncryption,
                       t.proposal.solution.roleBasedAccess,
                       t.proposal.solution.auditLogging,
-                      t.proposal.solution.complianceMonitoring
+                      t.proposal.solution.complianceMonitoring,
+                      'MFA and SSO (SAML/OIDC)',
+                      'Data loss prevention and field-level encryption'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -490,7 +529,9 @@ export default function ProposalPage() {
                       t.proposal.solution.autoScaling,
                       t.proposal.solution.uptimeGuarantee,
                       t.proposal.solution.globalCDN,
-                      t.proposal.solution.disasterRecovery
+                      t.proposal.solution.disasterRecovery,
+                      'In-region data residency options (KSA/Bahrain)',
+                      'Blue/green and zero-downtime deploys'
                     ].map((item, index) => (
                       <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <div className="w-2 h-2 bg-cyan-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -507,46 +548,7 @@ export default function ProposalPage() {
         </div>
       </section>
 
-      {/* Technology Stack */}
-      <section className="px-4 py-16 bg-gray-900">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <h2 className={`text-3xl md:text-4xl font-bold text-center text-white mb-12 ${isRTL ? 'text-right' : 'text-left'}`}>
-              {t.proposal.technologyStack.title}
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {[
-                { name: 'React 19', category: 'Frontend', color: 'bg-blue-500' },
-                { name: 'Next.js 15', category: 'Framework', color: 'bg-gray-700' },
-                { name: 'TypeScript', category: 'Language', color: 'bg-blue-600' },
-                { name: 'Tailwind CSS', category: 'Styling', color: 'bg-cyan-500' },
-                { name: 'Node.js', category: 'Backend', color: 'bg-green-500' },
-                { name: 'PostgreSQL', category: 'Database', color: 'bg-blue-700' },
-                { name: 'AWS', category: 'Cloud', color: 'bg-orange-500' },
-                { name: 'Docker', category: 'DevOps', color: 'bg-blue-400' },
-                { name: 'Redis', category: 'Cache', color: 'bg-red-500' },
-                { name: 'Nginx', category: 'Server', color: 'bg-green-600' },
-                { name: 'GraphQL', category: 'API', color: 'bg-pink-500' },
-                { name: 'Jest', category: 'Testing', color: 'bg-red-600' },
-              ].map((tech, index) => (
-                <div key={index} className="text-center p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
-                  <div className={`w-12 h-12 ${tech.color} rounded-lg flex items-center justify-center mx-auto mb-3`}>
-                    <span className="text-white font-bold text-sm">
-                      {tech.name.substring(0, 2)}
-                    </span>
-                  </div>
-                  <div className="text-white font-semibold text-sm mb-1">
-                    {tech.name}
-                  </div>
-                  <div className="text-gray-400 text-xs">
-                    {tech.category}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Healthcare Challenges */}
       <section className="px-4 py-16 bg-red-50">
@@ -877,168 +879,40 @@ export default function ProposalPage() {
         </div>
       </section>
 
-      {/* Technology Stack */}
+      {/* Modern Technology Stack (identical to home page) */}
       <section className="px-4 py-16 bg-gray-900 text-white">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Modern Technology Stack
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              <div className="bg-gray-800 rounded-lg p-6">
-                <div className={`flex items-center mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <div className={`w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center ${isRTL ? 'ml-3' : 'mr-3'}`}>
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
-                  </div>
-                  <h3 className={`text-xl font-semibold text-blue-400 ${isRTL ? 'text-right' : 'text-left'}`}>Frontend Technologies</h3>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { name: "Next.js 15+", desc: "App Router & Server Components", icon: SiNextdotjs },
-                    { name: "TypeScript", desc: "Type-safe development", icon: SiTypescript },
-                    { name: "Tailwind CSS", desc: "Utility-first styling", icon: SiTailwindcss },
-                    { name: "Shadcn/ui", desc: "Component library", icon: SiReact },
-                    { name: "React Query", desc: "Server state management", icon: SiReact },
-                    { name: "React 19", desc: "Concurrent features", icon: SiReact }
-                  ].map((tech, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <tech.icon className="text-lg text-blue-400" />
-                      <div>
-                        <div className="text-sm font-medium">{tech.name}</div>
-                        <div className="text-xs text-gray-400">{tech.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-gray-800 rounded-lg p-6">
-                <div className={`flex items-center mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <div className={`w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center ${isRTL ? 'ml-3' : 'mr-3'}`}>
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h3 className={`text-xl font-semibold text-green-400 ${isRTL ? 'text-right' : 'text-left'}`}>Mobile Development</h3>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { name: "React Native", desc: "Cross-platform apps", icon: SiReact },
-                    { name: "Expo", desc: "Development platform", icon: SiReact },
-                    { name: "PWA", desc: "Progressive Web App", icon: SiNextdotjs },
-                    { name: "Native Modules", desc: "Advanced functionality", icon: SiNodedotjs },
-                    { name: "Push Notifications", desc: "Real-time alerts", icon: SiSocketdotio },
-                    { name: "Offline Support", desc: "Cache & sync", icon: SiRedis }
-                  ].map((tech, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <tech.icon className="text-lg text-green-400" />
-                      <div>
-                        <div className="text-sm font-medium">{tech.name}</div>
-                        <div className="text-xs text-gray-400">{tech.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-gray-800 rounded-lg p-6">
-                <div className={`flex items-center mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <div className={`w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center ${isRTL ? 'ml-3' : 'mr-3'}`}>
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
-                    </svg>
-                  </div>
-                  <h3 className={`text-xl font-semibold text-purple-400 ${isRTL ? 'text-right' : 'text-left'}`}>Backend Infrastructure</h3>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { name: "Node.js + Express", desc: "Server runtime", icon: SiNodedotjs },
-                    { name: "PostgreSQL", desc: "Relational database", icon: SiPostgresql },
-                    { name: "Prisma ORM", desc: "Database toolkit", icon: SiPrisma },
-                    { name: "Redis", desc: "In-memory cache", icon: SiRedis },
-                    { name: "JWT Auth", desc: "Secure authentication", icon: MdSecurity },
-                    { name: "Microservices", desc: "Scalable architecture", icon: SiDocker }
-                  ].map((tech, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <tech.icon className="text-lg text-purple-400" />
-                      <div>
-                        <div className="text-sm font-medium">{tech.name}</div>
-                        <div className="text-xs text-gray-400">{tech.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-gray-800 rounded-lg p-6">
-                <div className={`flex items-center mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <div className={`w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center ${isRTL ? 'ml-3' : 'mr-3'}`}>
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  </div>
-                  <h3 className={`text-xl font-semibold text-yellow-400 ${isRTL ? 'text-right' : 'text-left'}`}>AI & Machine Learning</h3>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { name: "OpenAI GPT-4", desc: "Intelligent consultations", icon: SiOpenai },
-                    { name: "IBM Watson", desc: "Medical data analysis", icon: SiAmazon },
-                    { name: "Azure AI", desc: "Predictive analytics", icon: SiAmazon },
-                    { name: "Computer Vision", desc: "Image analysis", icon: SiOpenai },
-                    { name: "NLP", desc: "Arabic text processing", icon: SiOpenai },
-                    { name: "ML Models", desc: "Predictive healthcare", icon: SiGraphql }
-                  ].map((tech, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <tech.icon className="text-lg text-yellow-400" />
-                      <div>
-                        <div className="text-sm font-medium">{tech.name}</div>
-                        <div className="text-xs text-gray-400">{tech.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-800 rounded-lg p-6">
-              <div className={`flex items-center mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                <div className={`w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center ${isRTL ? 'ml-3' : 'mr-3'}`}>
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                  </svg>
-                </div>
-                <h3 className={`text-xl font-semibold text-red-400 ${isRTL ? 'text-right' : 'text-left'}`}>External Services & Integrations</h3>
-              </div>
-              <div className="grid md:grid-cols-3 gap-8">
-                <div>
-                  <h4 className="font-semibold mb-3 text-red-300 flex items-center">
-                    <span className="mr-2">🗺️</span>
-                    Location & Maps
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="text-sm">Google Maps API</div>
-                    <div className="text-xs text-gray-400">Real-time location services</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Modern Technology Stack</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { name: 'React', color: 'text-blue-500', Icon: FaReact },
+                { name: 'Next.js', color: 'text-gray-900', Icon: SiNextdotjs },
+                { name: 'TypeScript', color: 'text-blue-600', Icon: SiTypescript },
+                { name: 'Tailwind', color: 'text-cyan-500', Icon: SiTailwindcss },
+                { name: 'Node.js', color: 'text-green-500', Icon: FaNodeJs },
+                { name: 'PostgreSQL', color: 'text-blue-700', Icon: SiPostgresql },
+                { name: 'AWS', color: 'text-orange-500', Icon: FaAws },
+                { name: 'Docker', color: 'text-blue-400', Icon: FaDocker },
+                { name: 'Framer Motion', color: 'text-pink-600', Icon: SiFramer },
+                { name: 'Radix UI', color: 'text-gray-800', Icon: SiRadixui },
+                { name: 'React Hook Form', color: 'text-rose-600', Icon: SiReacthookform },
+                { name: 'Zustand', color: 'text-emerald-600', Icon: Layers },
+                { name: 'Zod', color: 'text-indigo-600', Icon: ShieldCheck },
+                { name: 'pnpm', color: 'text-yellow-600', Icon: SiPnpm },
+                { name: 'Vercel', color: 'text-gray-900', Icon: SiVercel },
+                { name: 'React Native', color: 'text-blue-500', Icon: FaReact },
+                { name: 'Expo', color: 'text-gray-900', Icon: SiNextdotjs },
+                { name: 'Android', color: 'text-green-600', Icon: SiAndroid },
+                { name: 'iOS', color: 'text-gray-900', Icon: SiIos },
+              ].map((tech, index) => (
+                <div key={index} className="text-center p-4 bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <div className={`flex flex-col items-center gap-2 ${tech.color}`}>
+                    <tech.Icon className="text-3xl" aria-hidden />
+                    <div className="text-sm font-semibold text-white">{tech.name}</div>
                   </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-3 text-red-300 flex items-center">
-                    <span className="mr-2">💳</span>
-                    Payment Gateways
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="text-sm">Moyasar • PayTabs • STC Pay • Tamara</div>
-                    <div className="text-xs text-gray-400">Multi-payment options</div>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-3 text-red-300 flex items-center">
-                    <span className="mr-2">📞</span>
-                    Communication
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="text-sm">Twilio • SendGrid • Socket.io</div>
-                    <div className="text-xs text-gray-400">SMS, email, real-time chat</div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -1354,7 +1228,7 @@ export default function ProposalPage() {
                         <CardContent>
                           <ul className="space-y-1">
                             {phase.tasks.map((task, taskIndex) => (
-                              <li key={taskIndex} className={`text-sm text-gray-600 flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+                              <li key={taskIndex} className={`text-sm text-gray-300 flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                                 <div className={`w-1.5 h-1.5 bg-primary-400 rounded-full ${isRTL ? 'ml-2' : 'mr-2'}`}></div>
                                 <span className={isRTL ? 'text-right' : 'text-left'}>{task}</span>
                               </li>
@@ -1382,37 +1256,12 @@ export default function ProposalPage() {
             <p className={`text-xl text-white/90 mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
               {t.proposal.callToAction.description}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="bg-white text-primary-500 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
-              >
-                {t.proposal.callToAction.scheduleConsultation}
-              </Link>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 transition-colors">
-                {t.proposal.callToAction.downloadPDF}
-              </button>
-            </div>
+            {/* Buttons removed per request */}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white px-4 py-12">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">DA</span>
-              </div>
-              <span className="font-semibold">DreamToApp</span>
-            </div>
-            <div className="text-gray-400">
-              © 2024 DreamToApp. Healthcare Innovation Delivered for Al-Elm Medical Company.
-            </div>
-          </div>
-        </div>
-      </footer>
+
     </main>
   )
 }

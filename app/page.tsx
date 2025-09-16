@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { FaReact, FaNodeJs, FaAws, FaDocker } from 'react-icons/fa'
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiFramer, SiRadixui, SiReacthookform, SiVercel, SiPnpm, SiExpo, SiAndroid, SiIos } from 'react-icons/si'
+import { Layers, ShieldCheck } from 'lucide-react'
 import { motion } from 'framer-motion'
-import Navigation from '@/components/navigation/Navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Home() {
@@ -20,8 +22,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
-      {/* Navigation */}
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative px-4 py-20 md:py-32 overflow-hidden">
@@ -125,7 +125,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className={`text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed max-w-4xl mx-auto ${isRTL ? 'text-right' : 'text-left'}`}
+              className={`text-lg md:text-xl lg:text-2xl text-foreground mb-8 leading-relaxed max-w-4xl mx-auto ${isRTL ? 'text-right' : 'text-left'}`}
             >
               <p className="mb-4">
                 {t.home.hero.description}
@@ -342,18 +342,30 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { name: 'React', color: 'text-blue-500' },
-                { name: 'Next.js', color: 'text-gray-900' },
-                { name: 'TypeScript', color: 'text-blue-600' },
-                { name: 'Tailwind', color: 'text-cyan-500' },
-                { name: 'Node.js', color: 'text-green-500' },
-                { name: 'PostgreSQL', color: 'text-blue-700' },
-                { name: 'AWS', color: 'text-orange-500' },
-                { name: 'Docker', color: 'text-blue-400' },
+                { name: 'React', color: 'text-blue-500', Icon: FaReact },
+                { name: 'Next.js', color: 'text-gray-900', Icon: SiNextdotjs },
+                { name: 'TypeScript', color: 'text-blue-600', Icon: SiTypescript },
+                { name: 'Tailwind', color: 'text-cyan-500', Icon: SiTailwindcss },
+                { name: 'Node.js', color: 'text-green-500', Icon: FaNodeJs },
+                { name: 'PostgreSQL', color: 'text-blue-700', Icon: SiPostgresql },
+                { name: 'AWS', color: 'text-orange-500', Icon: FaAws },
+                { name: 'Docker', color: 'text-blue-400', Icon: FaDocker },
+                { name: 'Framer Motion', color: 'text-pink-600', Icon: SiFramer },
+                { name: 'Radix UI', color: 'text-gray-800', Icon: SiRadixui },
+                { name: 'React Hook Form', color: 'text-rose-600', Icon: SiReacthookform },
+                { name: 'Zustand', color: 'text-emerald-600', Icon: Layers },
+                { name: 'Zod', color: 'text-indigo-600', Icon: ShieldCheck },
+                { name: 'pnpm', color: 'text-yellow-600', Icon: SiPnpm },
+                { name: 'Vercel', color: 'text-gray-900', Icon: SiVercel },
+                { name: 'React Native', color: 'text-blue-500', Icon: FaReact },
+                { name: 'Expo', color: 'text-gray-900', Icon: SiExpo },
+                { name: 'Android', color: 'text-green-600', Icon: SiAndroid },
+                { name: 'iOS', color: 'text-gray-900', Icon: SiIos },
               ].map((tech, index) => (
                 <div key={index} className="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                  <div className={`text-2xl font-bold ${tech.color} mb-2`}>
-                    {tech.name}
+                  <div className={`flex flex-col items-center gap-2 ${tech.color}`}>
+                    <tech.Icon className="text-3xl" aria-hidden />
+                    <div className="text-sm font-semibold text-gray-900">{tech.name}</div>
                   </div>
                 </div>
               ))}
@@ -369,7 +381,7 @@ export default function Home() {
             <h2 className={`text-3xl md:text-4xl font-bold text-white mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
               {t.home.cta.title}
             </h2>
-            <p className={`text-xl text-primary-100 mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
+            <p className={`text-xl text-primary-foreground mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
               {t.home.cta.description}
             </p>
             <Link
@@ -382,22 +394,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white px-4 py-12">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">DA</span>
-              </div>
-              <span className="font-semibold">DreamToApp</span>
-            </div>
-            <div className="text-gray-400">
-              {t.footer.copyright}
-            </div>
-          </div>
-        </div>
-      </footer>
+
     </main>
   )
 }
